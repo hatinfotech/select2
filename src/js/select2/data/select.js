@@ -284,7 +284,7 @@ define([
   SelectAdapter.prototype.matches = function (params, data) {
     var matcher = this.options.get('matcher');
 
-    return matcher(params, data);
+    return matcher(params, data, this);
   };
 
   return SelectAdapter;
