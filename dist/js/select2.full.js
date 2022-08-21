@@ -5224,19 +5224,23 @@ S2.define('select2/defaults',[
         return matcher(params, match);
       }
 
-      const _filter = adapter?.options?.get('filter');
-      if (_filter) {
-        if(_filter(params.term, data.text)) {
-          return data;
-        }
-      } else {
-        var original = stripDiacritics(data.text).toUpperCase();
-        var term = stripDiacritics(params.term).toUpperCase();
+      // const _filter = adapter?.options?.get('filter');
+      // if (_filter) {
+      //   if(_filter(params.term, data.text)) {
+      //     return data;
+      //   }
+      // } else {
+      //   var original = stripDiacritics(data.text).toUpperCase();
+      //   var term = stripDiacritics(params.term).toUpperCase();
 
-        // Check if the text contains the term
-        if (original.indexOf(term) > -1) {
-          return data;
-        }
+      //   // Check if the text contains the term
+      //   if (original.indexOf(term) > -1) {
+      //     return data;
+      //   }
+      // }
+
+      if((new RegExp(stripDiacritics(params.term).toLowerCase().replace(/\s+/g, '.*'), 'ig')).test(stripDiacritics(data.text))) {
+        return data;
       }
 
       // If it doesn't contain the term, don't return anything
