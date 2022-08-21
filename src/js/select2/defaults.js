@@ -282,7 +282,7 @@ define([
         return matcher(params, match);
       }
 
-      const _filter = adapter.options.get('filter');
+      const _filter = adapter?.options?.get('filter');
       if (_filter) {
         if(_filter(params.term, data.text)) {
           return data;
